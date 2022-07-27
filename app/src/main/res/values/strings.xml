@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FilmLand</string>
+    <string name="upcoming">UpComing</string>
+    <string name="popular_movies">Popular Movies</string>
 </resources>

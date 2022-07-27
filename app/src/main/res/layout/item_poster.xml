@@ -4,7 +4,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="8dp">
 
     <ImageView
         android:id="@+id/image_poster"
@@ -12,34 +12,24 @@
         android:layout_height="200dp"
         android:scaleType="fitXY"
         android:src="@drawable/pattern_poster"
-        app:layout_constraintBottom_toTopOf="@+id/title_film"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/title_film"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/genres_film"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_poster"
-        tool:text="O Telefone Preto" />
 
     <TextView
-        android:id="@+id/genres_film"
+        android:id="@+id/average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/average_shape"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/title_film"
-        app:layout_constraintTop_toBottomOf="@id/title_film"
-        tool:text="Action" />
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/image_poster"
+        app:layout_constraintTop_toTopOf="@id/image_poster"
+        tool:text="7.1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
