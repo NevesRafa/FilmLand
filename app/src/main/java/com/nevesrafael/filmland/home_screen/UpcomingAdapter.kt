@@ -3,12 +3,13 @@ package com.nevesrafael.filmland.home_screen
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.nevesrafael.filmland.databinding.ItemPosterBinding
 import com.nevesrafael.filmland.model.UpcomingResultsApiResponse
 
 class UpcomingAdapter : RecyclerView.Adapter<UpcomingViewHolder>() {
 
-    private val UpcomingResults = mutableListOf<UpcomingResultsApiResponse>()
+    private val upcomingResults = mutableListOf<UpcomingResultsApiResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -17,11 +18,16 @@ class UpcomingAdapter : RecyclerView.Adapter<UpcomingViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = upcomingResults[position]
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    override fun getItemCount() = upcomingResults.size
+
+    fun update(result: List<UpcomingResultsApiResponse>) {
+        this.upcomingResults.clear()
+        this.upcomingResults.addAll(result)
+        notifyDataSetChanged()
     }
 
 }
@@ -30,7 +36,7 @@ class UpcomingViewHolder(val binding: ItemPosterBinding) : RecyclerView.ViewHold
 
     fun bind(result: UpcomingResultsApiResponse) {
         binding.average.text = result.vote_average.toString()
-
+        binding.imagePoster.load("https://image.tmdb.org/t/p/w500/${result.poster_path}")
     }
 
 }
