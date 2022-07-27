@@ -2,11 +2,11 @@ package com.nevesrafael.filmland.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UpcomingApiResponse(
-    val results: List<UpcomingResultsApiResponse>
+data class MoviesApiResponse(
+    val results: List<MoviesResultsApiResponse>
 )
 
-data class UpcomingResultsApiResponse(
+data class MoviesResultsApiResponse(
     @SerializedName("genre_ids") val genreIds: List<Int>,
     val id: Int,
     @SerializedName("original_language") val originalLanguage: String,
