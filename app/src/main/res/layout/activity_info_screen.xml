@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".InfoScreenActivity">
+        tools:context=".info_screen.InfoScreenActivity">
 
         <VideoView
             android:id="@+id/trailers"
@@ -22,9 +22,10 @@
 
         <TextView
             android:id="@+id/movie_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -34,19 +35,6 @@
             app:layout_constraintTop_toBottomOf="@id/trailers"
             tools:text="Minions 2: The Rise of Gru" />
 
-        <TextView
-            android:id="@+id/release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movie_name"
-            app:layout_constraintTop_toBottomOf="@id/trailers"
-            tools:text="(2022)" />
 
         <TextView
             android:id="@+id/info_average"

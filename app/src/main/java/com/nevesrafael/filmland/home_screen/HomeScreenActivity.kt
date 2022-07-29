@@ -1,8 +1,10 @@
 package com.nevesrafael.filmland.home_screen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nevesrafael.filmland.databinding.ActivityHomeScreenBinding
+import com.nevesrafael.filmland.info_screen.InfoScreenActivity
 import com.nevesrafael.filmland.model.MoviesResultsApiResponse
 
 class HomeScreenActivity : AppCompatActivity() {
@@ -29,7 +31,20 @@ class HomeScreenActivity : AppCompatActivity() {
     }
 
     private fun configureRecyclerViewUpcoming() {
-        upcomingAdapter = UpcomingAdapter()
+        upcomingAdapter = UpcomingAdapter(clickOnTheMovie = { info ->
+
+            val movieInfo = Intent(this, InfoScreenActivity::class.java)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.original_title)
+            movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, info.release_date)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, info.overview)
+            startActivity(movieInfo)
+
+
+        })
         binding.recyclerUpcoming.adapter = upcomingAdapter
     }
 

@@ -7,7 +7,7 @@ data class MoviesApiResponse(
 )
 
 data class MoviesResultsApiResponse(
-    @SerializedName("genre_ids") val genreIds: List<Int>,
+    @SerializedName("genre_ids") val genreIds: ArrayList<Int>,
     val id: Int,
     @SerializedName("original_language") val originalLanguage: String,
     val original_title: String,

@@ -7,7 +7,7 @@ import coil.load
 import com.nevesrafael.filmland.databinding.ItemPosterBinding
 import com.nevesrafael.filmland.model.MoviesResultsApiResponse
 
-class UpcomingAdapter : RecyclerView.Adapter<UpcomingViewHolder>() {
+class UpcomingAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) : RecyclerView.Adapter<UpcomingViewHolder>() {
 
     private val upcomingResults = mutableListOf<MoviesResultsApiResponse>()
 
@@ -19,7 +19,7 @@ class UpcomingAdapter : RecyclerView.Adapter<UpcomingViewHolder>() {
 
     override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
         val item = upcomingResults[position]
-        holder.bind(item)
+        holder.bind(item, clickOnTheMovie)
     }
 
     override fun getItemCount() = upcomingResults.size
@@ -35,9 +35,13 @@ class UpcomingAdapter : RecyclerView.Adapter<UpcomingViewHolder>() {
 class UpcomingViewHolder(val binding: ItemPosterBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(result: MoviesResultsApiResponse) {
+    fun bind(result: MoviesResultsApiResponse, clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) {
         binding.average.text = result.vote_average.toString()
         binding.imagePoster.load("https://image.tmdb.org/t/p/w500/${result.poster_path}")
+
+        binding.root.setOnClickListener {
+            clickOnTheMovie(result)
+        }
     }
 
 }
