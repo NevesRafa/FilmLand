@@ -16,6 +16,9 @@
         android:theme="@style/Theme.FilmLand"
         tools:targetApi="31">
         <activity
+            android:name=".InfoScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".home_screen.HomeScreenActivity"
             android:exported="true">
             <intent-filter>
