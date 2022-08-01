@@ -19,13 +19,6 @@ class InfoScreenPresenter(val screen: InfoScreenActivity) {
         .create(MoviesApi::class.java)
 
 
-    /**
-     * esse método é pra carregar os trailers... ele deveria:
-     * 1) mostrar um loading na tela
-     * 2) baixar os trailers pra um determinado filme
-     * 3) sumir com o loading
-     * 4) mostrar os trailers que baixou
-     */
     fun loadTrailers(movieId: Int) {
 
         screen.lifecycleScope.launch {
@@ -36,6 +29,7 @@ class InfoScreenPresenter(val screen: InfoScreenActivity) {
 
             checkTrailer(trailerResponse)
         }
+
     }
 
 

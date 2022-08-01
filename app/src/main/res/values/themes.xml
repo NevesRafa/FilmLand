@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FilmLand" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#D7DAB8</item>
+        <item name="colorPrimaryVariant">#F0283E49</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

@@ -37,7 +37,7 @@ class HomeScreenActivity : AppCompatActivity() {
         topRatedAdapter = HomeScreenAdapter(clickOnTheMovie = { info ->
             val movieInfo = Intent(this, InfoScreenActivity::class.java)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.original_title)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
             movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
@@ -53,7 +53,7 @@ class HomeScreenActivity : AppCompatActivity() {
         nowPlayingAdapter = HomeScreenAdapter(clickOnTheMovie = { info ->
             val movieInfo = Intent(this, InfoScreenActivity::class.java)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.original_title)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
             movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
@@ -69,7 +69,7 @@ class HomeScreenActivity : AppCompatActivity() {
         popularAdapter = HomeScreenAdapter(clickOnTheMovie = { info ->
             val movieInfo = Intent(this, InfoScreenActivity::class.java)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.original_title)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
             movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
@@ -85,7 +85,7 @@ class HomeScreenActivity : AppCompatActivity() {
         homeScreenAdapter = HomeScreenAdapter(clickOnTheMovie = { info ->
             val movieInfo = Intent(this, InfoScreenActivity::class.java)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.original_title)
+            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
             movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
             movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
