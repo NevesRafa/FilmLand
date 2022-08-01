@@ -16,6 +16,16 @@ interface MoviesApi {
         @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
     ): MoviesApiResponse
 
+    @GET("movie/now_playing")
+    suspend fun getNowPlaying(
+        @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
+    ): MoviesApiResponse
+
+    @GET("movie/top_rated")
+    suspend fun getTopRated(
+        @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
+    ): MoviesApiResponse
+
     @GET("movie/{movie_id}/videos")
     suspend fun getTrailer(
         @Path("movie_id") id: Int,

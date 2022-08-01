@@ -3,6 +3,7 @@ package com.nevesrafael.filmland.home_screen
 import androidx.lifecycle.lifecycleScope
 import com.nevesrafael.filmland.model.MoviesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -19,6 +20,10 @@ class HomeScreenPresenter(val screen: HomeScreenActivity) {
     fun loadFilms() {
         screen.lifecycleScope.launch {
 
+            screen.showLoading()
+
+            delay(4000)
+
             val upcoming = withContext(Dispatchers.IO) {
                 return@withContext moviesApi.getUpcoming()
             }
@@ -27,7 +32,16 @@ class HomeScreenPresenter(val screen: HomeScreenActivity) {
                 return@withContext moviesApi.getPopular()
             }
 
-            screen.showOnScreen(upcoming.results, popular.results)
+            val nowPlaying = withContext(Dispatchers.IO) {
+                return@withContext moviesApi.getNowPlaying()
+            }
+
+            val topRated = withContext(Dispatchers.IO) {
+                return@withContext moviesApi.getTopRated()
+            }
+
+            screen.hideLoading()
+            screen.showOnScreen(upcoming.results, popular.results, nowPlaying.results, topRated.results)
         }
 
     }

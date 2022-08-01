@@ -6,7 +6,7 @@ plugins {
 
 android {
     compileSdk 32
-    viewBinding{
+    viewBinding {
         enabled = true
     }
 
@@ -37,7 +37,6 @@ android {
 
 dependencies {
 
-    implementation files('libs/YoutubeAndroidPlayerApi.jar')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -52,13 +51,19 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //implementação de Corrotina
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 
     // implementaçao para o banco de dados
-    implementation "androidx.room:room-runtime:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
 
     //implementação Coil
     implementation("io.coil-kt:coil:2.1.0")
+
+    //implementção youtube
+    implementation files('libs/YoutubeAndroidPlayerApi.jar')
+
+    //implementação Lottie
+    implementation "com.airbnb.android:lottie:3.4.0"
 }
