@@ -31,12 +31,13 @@
             tools:text="Johnny Depp" />
 
         <TextView
-            android:id="@+id/actor_film_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/character"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:textStyle="italic"
+            android:lines="2"
             tools:text="Jack" />
 
     </LinearLayout>

@@ -7,32 +7,33 @@ import coil.load
 import com.nevesrafael.filmland.databinding.ItemPosterBinding
 import com.nevesrafael.filmland.model.MoviesResultsApiResponse
 
-class UpcomingAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) : RecyclerView.Adapter<UpcomingViewHolder>() {
+class HomeScreenAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) :
+    RecyclerView.Adapter<HomeScreenViewHolder>() {
 
-    private val upcomingResults = mutableListOf<MoviesResultsApiResponse>()
+    private val results = mutableListOf<MoviesResultsApiResponse>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeScreenViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemPosterBinding.inflate(inflater, parent, false)
-        return UpcomingViewHolder(binding)
+        return HomeScreenViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
-        val item = upcomingResults[position]
+    override fun onBindViewHolder(holder: HomeScreenViewHolder, position: Int) {
+        val item = results[position]
         holder.bind(item, clickOnTheMovie)
     }
 
-    override fun getItemCount() = upcomingResults.size
+    override fun getItemCount() = results.size
 
     fun update(result: List<MoviesResultsApiResponse>) {
-        this.upcomingResults.clear()
-        this.upcomingResults.addAll(result)
+        this.results.clear()
+        this.results.addAll(result)
         notifyDataSetChanged()
     }
 
 }
 
-class UpcomingViewHolder(val binding: ItemPosterBinding) :
+class HomeScreenViewHolder(val binding: ItemPosterBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(result: MoviesResultsApiResponse, clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) {

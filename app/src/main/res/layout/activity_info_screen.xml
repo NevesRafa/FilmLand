@@ -11,11 +11,11 @@
         android:layout_height="wrap_content"
         tools:context=".info_screen.InfoScreenActivity">
 
-        <VideoView
-            android:id="@+id/trailers"
+        <fragment
+            android:id="@+id/youtube_trailers"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trailers"
+            app:layout_constraintTop_toBottomOf="@id/youtube_trailers"
             tools:text="Minions 2: The Rise of Gru" />
 
 

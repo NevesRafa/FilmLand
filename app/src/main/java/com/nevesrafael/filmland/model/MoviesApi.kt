@@ -1,6 +1,7 @@
 package com.nevesrafael.filmland.model
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MoviesApi {
@@ -14,4 +15,16 @@ interface MoviesApi {
     suspend fun getPopular(
         @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
     ): MoviesApiResponse
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getTrailer(
+        @Path("movie_id") id: Int,
+        @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
+    ): TrailerApiResponse
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getActors(
+        @Path("movie_id") id: Int,
+        @Query("api_key") key: String = "3454a9d8acef9fe80171ca654cb5d863"
+    ): ActorsApiResponse
 }
