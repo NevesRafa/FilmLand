@@ -67,7 +67,6 @@ class InfoScreenActivity : AppCompatActivity() {
         binding.infoAverage.text = average.toString()
         binding.sinopse.text = overview
         binding.movieName.text = "$name ($year)"
-
     }
 
     fun showTrailer(youtubeId: String) {

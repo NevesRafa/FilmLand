@@ -3,7 +3,7 @@
     <style name="Theme.FilmLand" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#D7DAB8</item>
-        <item name="colorPrimaryVariant">#F0283E49</item>
+        <item name="colorPrimaryVariant">#F02B353A</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">FilmLand</string>
-    <string name="upcoming">UpComing</string>
-    <string name="popular_movies">Popular Movies</string>
+    <string name="upcoming">Próximos</string>
+    <string name="popular_on_filmland">Popular em FilmLand</string>
+    <string name="now_playing">Passando Agora</string>
+    <string name="top_rated">Mais Votados</string>
+    <string name="films">Filmes</string>
+    <string name="series">Series</string>
+    <string name="my_list">Minha Lista</string>
 </resources>

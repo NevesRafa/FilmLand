@@ -1,4 +1,4 @@
-package com.nevesrafael.filmland.home_screen
+package com.nevesrafael.filmland.home_screen.movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,18 +7,18 @@ import coil.load
 import com.nevesrafael.filmland.databinding.ItemPosterBinding
 import com.nevesrafael.filmland.model.MoviesResultsApiResponse
 
-class HomeScreenAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) :
-    RecyclerView.Adapter<HomeScreenViewHolder>() {
+class MoviesAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) :
+    RecyclerView.Adapter<MoviesViewHolder>() {
 
     private val results = mutableListOf<MoviesResultsApiResponse>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeScreenViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemPosterBinding.inflate(inflater, parent, false)
-        return HomeScreenViewHolder(binding)
+        return MoviesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomeScreenViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val item = results[position]
         holder.bind(item, clickOnTheMovie)
     }
@@ -33,7 +33,7 @@ class HomeScreenAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) 
 
 }
 
-class HomeScreenViewHolder(val binding: ItemPosterBinding) :
+class MoviesViewHolder(val binding: ItemPosterBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(result: MoviesResultsApiResponse, clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) {
