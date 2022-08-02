@@ -12,8 +12,8 @@ import com.nevesrafael.filmland.model.MoviesResultsApiResponse
 
 class MoviesFragment : Fragment() {
 
-    lateinit var binding: FragmentMoviesBinding
-    lateinit var presenter: MoviesPresenter
+    private lateinit var binding: FragmentMoviesBinding
+    private lateinit var presenter: MoviesPresenter
 
     private lateinit var moviesAdapter: MoviesAdapter
     private lateinit var popularAdapter: MoviesAdapter
@@ -43,67 +43,90 @@ class MoviesFragment : Fragment() {
 
     private fun configureRecyclerViewTopRated() {
         topRatedAdapter = MoviesAdapter(clickOnTheMovie = { info ->
-            val movieInfo = Intent(requireContext(), InfoScreenActivity::class.java)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
-            movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, info.release_date)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, info.overview)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_IMAGE_MOVIE, info.poster_path)
-            startActivity(movieInfo)
+            sendMovieToInfo(
+                info.id,
+                info.title,
+                info.genreIds,
+                info.originalLanguage,
+                info.vote_average,
+                info.release_date,
+                info.overview,
+                info.poster_path
+            )
         })
         binding.recyclerToprated.adapter = topRatedAdapter
     }
 
     private fun configureRecyclerViewNowPlaying() {
         nowPlayingAdapter = MoviesAdapter(clickOnTheMovie = { info ->
-            val movieInfo = Intent(requireContext(), InfoScreenActivity::class.java)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
-            movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, info.release_date)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, info.overview)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_IMAGE_MOVIE, info.poster_path)
-            startActivity(movieInfo)
+            sendMovieToInfo(
+                info.id,
+                info.title,
+                info.genreIds,
+                info.originalLanguage,
+                info.vote_average,
+                info.release_date,
+                info.overview,
+                info.poster_path
+            )
         })
         binding.recyclerNowplaying.adapter = nowPlayingAdapter
     }
 
     private fun configureRecyclerViewPopular() {
         popularAdapter = MoviesAdapter(clickOnTheMovie = { info ->
-            val movieInfo = Intent(requireContext(), InfoScreenActivity::class.java)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
-            movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, info.release_date)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, info.overview)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_IMAGE_MOVIE, info.poster_path)
-            startActivity(movieInfo)
+            sendMovieToInfo(
+                info.id,
+                info.title,
+                info.genreIds,
+                info.originalLanguage,
+                info.vote_average,
+                info.release_date,
+                info.overview,
+                info.poster_path
+            )
         })
         binding.recyclerPopularMovies.adapter = popularAdapter
     }
 
     private fun configureRecyclerViewUpcoming() {
         moviesAdapter = MoviesAdapter(clickOnTheMovie = { info ->
-            val movieInfo = Intent(requireContext(), InfoScreenActivity::class.java)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, info.id)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, info.title)
-            movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, info.genreIds)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, info.originalLanguage)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, info.vote_average)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, info.release_date)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, info.overview)
-            movieInfo.putExtra(InfoScreenActivity.EXTRA_IMAGE_MOVIE, info.poster_path)
-            startActivity(movieInfo)
+            sendMovieToInfo(
+                info.id,
+                info.title,
+                info.genreIds,
+                info.originalLanguage,
+                info.vote_average,
+                info.release_date,
+                info.overview,
+                info.poster_path
+            )
         })
         binding.recyclerUpcoming.adapter = moviesAdapter
     }
+
+    private fun sendMovieToInfo(
+        id: Int,
+        title: String,
+        genreIds: ArrayList<Int>,
+        originalLanguage: String,
+        voteAverage: Double,
+        releaseDate: String,
+        overview: String,
+        posterPath: String
+    ) {
+        val movieInfo = Intent(requireContext(), InfoScreenActivity::class.java)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_ID_MOVIE, id)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_NAME_MOVIE, title)
+        movieInfo.putIntegerArrayListExtra(InfoScreenActivity.EXTRA_GENRES_MOVIE, genreIds)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_LANGUAGE_MOVIE, originalLanguage)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_AVERAGE_MOVIE, voteAverage)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_DATE_MOVIE, releaseDate)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_OVERVIEW_MOVIE, overview)
+        movieInfo.putExtra(InfoScreenActivity.EXTRA_IMAGE_MOVIE, posterPath)
+        startActivity(movieInfo)
+    }
+
 
     fun showOnScreen(
         upcomingResult: List<MoviesResultsApiResponse>,

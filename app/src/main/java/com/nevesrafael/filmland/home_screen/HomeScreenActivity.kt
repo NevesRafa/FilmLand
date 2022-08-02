@@ -34,11 +34,20 @@ class HomeScreenActivity : AppCompatActivity() {
         binding.viewPager.adapter = tabsAdapter
 
         val mediator = TabLayoutMediator(binding.tablayout, binding.viewPager) { tab, position ->
-            if (position == 0) {
-                tab.setText(R.string.films)
-                tab.setIcon(R.drawable.ic_movie)
+            when (position) {
+                0 -> {
+                    tab.setText(R.string.films)
+                    tab.setIcon(R.drawable.ic_movie)
+                }
+                1 -> {
+                    tab.setText(R.string.series)
+                    tab.setIcon(R.drawable.ic_television)
+                }
+                2 -> {
+                    tab.setText(R.string.my_list)
+                    tab.setIcon(R.drawable.ic_heart)
+                }
             }
-//            else if bla bla bla
         }
 
         mediator.attach()
