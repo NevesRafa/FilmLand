@@ -9,6 +9,7 @@ import com.nevesrafael.filmland.R
 import com.nevesrafael.filmland.databinding.ActivityInfoScreenBinding
 import com.nevesrafael.filmland.formatter.DateFormatter
 import com.nevesrafael.filmland.model.ActorsResultsApiResponse
+import com.nevesrafael.filmland.model.MoviesApiResponseTest
 
 class InfoScreenActivity : AppCompatActivity() {
 
@@ -33,7 +34,7 @@ class InfoScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
         presenter = InfoScreenPresenter(this)
         configureRecyclerViewActors()
-        showOnScreen()
+        // presenter.loadInfo()
         receiveAndSendId()
 
     }
@@ -42,6 +43,7 @@ class InfoScreenActivity : AppCompatActivity() {
         val movieId = intent.getIntExtra(EXTRA_ID_MOVIE, 0)
         presenter.loadTrailers(movieId)
         presenter.loadActors(movieId)
+        presenter.loadInfo(movieId)
     }
 
     private fun configureRecyclerViewActors() {
@@ -49,22 +51,29 @@ class InfoScreenActivity : AppCompatActivity() {
         binding.recyclerCast.adapter = actorsAdapter
     }
 
-    private fun showOnScreen() {
+    fun showOnScreen(info: MoviesApiResponseTest) {
 
-        val data = intent.extras
-        val name = data?.getString(EXTRA_NAME_MOVIE)
-        val genres = data?.getIntArray(EXTRA_GENRES_MOVIE)
-        val language = data?.getString(EXTRA_LANGUAGE_MOVIE)
-        val average = data?.getDouble(EXTRA_AVERAGE_MOVIE, 0.0)
-        val date = data?.getString(EXTRA_DATE_MOVIE)
-        val overview = data?.getString(EXTRA_OVERVIEW_MOVIE)
-        val image = data?.getString(EXTRA_IMAGE_MOVIE) ?: ""
-
-        val year = date?.let { DateFormatter.dateFormatter(it) }
-
+        val name = info.title
+        // val genres = info.genres
+        val language = info.original_language
+        val average = info.vote_average
+        val date = info.release_date
+        val overview = info.overview
+        val year = date.let { DateFormatter.dateFormatter(it) }
+//        val data = intent.extras
+//        val name = data?.getString(EXTRA_NAME_MOVIE)
+//        val genres = data?.getIntArray(EXTRA_GENRES_MOVIE)
+//        val language = data?.getString(EXTRA_LANGUAGE_MOVIE)
+//        val average = data?.getDouble(EXTRA_AVERAGE_MOVIE, 0.0)
+//        val date = data?.getString(EXTRA_DATE_MOVIE)
+//        val overview = data?.getString(EXTRA_OVERVIEW_MOVIE)
+//        val image = data?.getString(EXTRA_IMAGE_MOVIE) ?: ""
+//
+//        val year = date?.let { DateFormatter.dateFormatter(it) }
+//
         binding.language.text = "Original Language: $language"
         binding.fullReleaseDate.text = "Release Date: $date"
-        binding.infoAverage.text = average.toString()
+        binding.infoAverage.text = "%.1f".format(average)
         binding.sinopse.text = overview
         binding.movieName.text = "$name ($year)"
     }

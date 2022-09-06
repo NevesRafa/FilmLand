@@ -44,6 +44,19 @@ class InfoScreenPresenter(val screen: InfoScreenActivity) {
         }
     }
 
+    fun loadInfo(movieId: Int) {
+        screen.lifecycleScope.launch {
+
+            val info = withContext(Dispatchers.IO) {
+                return@withContext moviesApi.getInfo(movieId)
+            }
+
+            screen.showOnScreen(info)
+        }
+
+
+    }
+
     fun checkActors(actors: ActorsApiResponse) {
         if (actors.cast.isEmpty()) {
 

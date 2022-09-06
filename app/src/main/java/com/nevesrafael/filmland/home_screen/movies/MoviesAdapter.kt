@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.nevesrafael.filmland.databinding.ItemPosterBinding
-import com.nevesrafael.filmland.model.MoviesResultsApiResponse
+import com.nevesrafael.filmland.model.HomeItemDataResults
 
-class MoviesAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) :
+class MoviesAdapter(private val clickOnTheMovie: (HomeItemDataResults) -> Unit) :
     RecyclerView.Adapter<MoviesViewHolder>() {
 
-    private val results = mutableListOf<MoviesResultsApiResponse>()
+    private val results = mutableListOf<HomeItemDataResults>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,7 +25,7 @@ class MoviesAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> U
 
     override fun getItemCount() = results.size
 
-    fun update(result: List<MoviesResultsApiResponse>) {
+    fun update(result: List<HomeItemDataResults>) {
         this.results.clear()
         this.results.addAll(result)
         notifyDataSetChanged()
@@ -36,8 +36,8 @@ class MoviesAdapter(private val clickOnTheMovie: (MoviesResultsApiResponse) -> U
 class MoviesViewHolder(val binding: ItemPosterBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(result: MoviesResultsApiResponse, clickOnTheMovie: (MoviesResultsApiResponse) -> Unit) {
-        binding.average.text = result.vote_average.toString()
+    fun bind(result: HomeItemDataResults, clickOnTheMovie: (HomeItemDataResults) -> Unit) {
+        binding.average.text = "%.1f".format(result.vote_average)
         binding.imagePoster.load("https://image.tmdb.org/t/p/w500/${result.poster_path}")
 
         binding.root.setOnClickListener {
