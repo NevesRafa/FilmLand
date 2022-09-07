@@ -15,7 +15,11 @@ class SeriesFragment : Fragment() {
 
     private lateinit var binding: FragmentSeriesBinding
     private lateinit var presenter: SeriesPresenter
-    private lateinit var adapter: MoviesAdapter
+    private lateinit var airingTodayAdapter: MoviesAdapter
+    private lateinit var popularAdapter: MoviesAdapter
+    private lateinit var topRatedAdapter: MoviesAdapter
+    private lateinit var onTheAirAdapter: MoviesAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,16 +35,40 @@ class SeriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         configureRecyclerAiringToday()
+        configurePopular()
+        configureOnTheAir()
+        configureTopRated()
 
         presenter.loadSeries()
 
     }
 
     private fun configureRecyclerAiringToday() {
-        adapter = MoviesAdapter(clickOnTheMovie = { info ->
+        airingTodayAdapter = MoviesAdapter(clickOnTheMovie = { info ->
             sendSerieToInfo(info.id)
         })
-        binding.recyclerAiringToday.adapter = adapter
+        binding.recyclerAiringToday.adapter = airingTodayAdapter
+    }
+
+    private fun configurePopular() {
+        popularAdapter = MoviesAdapter(clickOnTheMovie = { info ->
+            sendSerieToInfo(info.id)
+        })
+        binding.recyclerPopularSeries.adapter = popularAdapter
+    }
+
+    private fun configureTopRated() {
+        topRatedAdapter = MoviesAdapter(clickOnTheMovie = { info ->
+            sendSerieToInfo(info.id)
+        })
+        binding.recyclerTopRated.adapter = topRatedAdapter
+    }
+
+    private fun configureOnTheAir() {
+        onTheAirAdapter = MoviesAdapter(clickOnTheMovie = { info ->
+            sendSerieToInfo(info.id)
+        })
+        binding.recyclerOnTheAir.adapter = onTheAirAdapter
     }
 
     private fun sendSerieToInfo(id: Int) {
@@ -49,7 +77,31 @@ class SeriesFragment : Fragment() {
         startActivity(movieInfo)
     }
 
-    fun showOnScreen(airingTodayResults: List<HomeItemDataResults>) {
-        adapter.update(airingTodayResults)
+    fun showOnScreen(
+        airingTodayResults: List<HomeItemDataResults>,
+        popularResult: List<HomeItemDataResults>,
+        topRatedResult: List<HomeItemDataResults>,
+        onTheAirResult: List<HomeItemDataResults>
+    ) {
+        airingTodayAdapter.update(airingTodayResults)
+        popularAdapter.update(popularResult)
+        topRatedAdapter.update(topRatedResult)
+        onTheAirAdapter.update(onTheAirResult)
+    }
+
+    fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
+        binding.titlePopularSeries.visibility = View.GONE
+        binding.titleAiringToday.visibility = View.GONE
+        binding.titleOnTheAir.visibility = View.GONE
+        binding.titleTopRated.visibility = View.GONE
+    }
+
+    fun hideLoading() {
+        binding.loading.visibility = View.GONE
+        binding.titlePopularSeries.visibility = View.VISIBLE
+        binding.titleAiringToday.visibility = View.VISIBLE
+        binding.titleOnTheAir.visibility = View.VISIBLE
+        binding.titleTopRated.visibility = View.VISIBLE
     }
 }

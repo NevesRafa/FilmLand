@@ -16,18 +16,8 @@ class HomeScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         configureTabs()
-
-        // presenter.loadGenres()
+        scrollLock()
     }
-
-    /*
-    * método loadGenres()
-    *
-    * 1) pega todos os generos do DAO
-    * 2) se tiver vazio, precisa chamar a api e guardar todos no DAO
-    * 3) se tiver itens na lista não precisa chamar nada e segue a vida
-    *
-    * */
 
     private fun configureTabs() {
         val tabsAdapter = HomeScreenTabAdapter(this)
@@ -49,7 +39,10 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
-
         mediator.attach()
+    }
+
+    private fun scrollLock() {
+        binding.viewPager.isUserInputEnabled = false
     }
 }
